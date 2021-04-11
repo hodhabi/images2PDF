@@ -1,3 +1,10 @@
+#This Python script creates PDF files from a large number of images.
+#The images are taken after a construction project to show areas
+#that require desnagging.  Issues include painting, flooring, 
+#power sockt installation and many other issues
+#A PDF file is create for each floor and issue
+#An HTML code is generated to link the produced PDF files
+
 import pandas as pd 
 import img2pdf 
 from PIL import Image 
@@ -7,12 +14,18 @@ from fpdf import FPDF
 import os.path
 from os import path
 
-snag = pd.read_excel("SnaggingList_floor2_3.xlsx")
+
+#Reading an excel file that includes records for each image
+#The columns are filename, Floor, Issue, and fe more columns
+snag = pd.read_excel("SnaggingList_floor1_G.xlsx")
 issue = snag.Issue.unique()
+
+floor = snag["Floor"].unique()
 
 print("<html>")
 print("<head><head>")
 print("<body>")
+
 
 for f in floor:
     print("<b>Floor: " + str(f) + "</b>")
